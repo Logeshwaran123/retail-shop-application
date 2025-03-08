@@ -1,10 +1,26 @@
-export function getProducts(req, res) {
-  const data = {
-    pid: "n001",
-    pname: "Product Name",
-    seller: "Veggies Store",
-    prate: 200,
-    stock: 100,
-  };
+import ProductModel from "../models/productModel.js";
+
+export async function getProducts(req, res) {
+  const data = await ProductModel.find();
   res.status(200).json({ status: "Success", data });
+}
+
+export async function createProduct(req, res) {
+  try {
+    await ProductModel.create(req.body);
+    res.status(201).json({ status: "Success", message: "Product Created" });
+  } catch (err) {
+    console.log(err.message);
+    res.status(400).json({ status: "Failed", message: "Bad Request" });
+  }
+}
+
+export async function updateProduct(req, res) {
+  await ProductModel.updateOne(req.params, req.body);
+  res.status(200).json({ status: "Success", message: "Product Updated" });
+}
+
+export async function deleteProduct(req, res) {
+  await ProductModel.deleteOne(req.params);
+  res.status(204).json({ status: "Succes", message: "Product Deleted" });
 }

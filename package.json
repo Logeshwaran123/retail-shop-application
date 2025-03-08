@@ -6,7 +6,11 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "start:prod": "ENV=PROD nodemon server.js",
+    "start:dev": "ENV=DEV nodemon server.js",
+    "debug": "ENV=DEBUG nodemon server.js",
+    "lint": "cls && echo No 'Linters were configured yet'"
   },
   "author": "Logesh",
   "license": "ISC",

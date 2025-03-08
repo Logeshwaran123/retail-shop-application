@@ -1,19 +1,19 @@
 import app from "./app.js";
 import { connect } from "mongoose";
+import { config } from "dotenv";
+config();
 
-const DBCONNSTR = `mongodb+srv://logesh:ySpQpxeMsCX7Daf@retail-db-cluster.yivan.mongodb.net/main?retryWrites=true&w=majority&appName=retail-db-cluster`;
+const PORT = 8000;
 
 async function connectDB() {
   try {
-    await connect(DBCONNSTR);
+    await connect(process.env.DB_STRING);
     console.log("Connected Successfully");
   } catch {
     console.log("Connection Failed");
   }
 }
 connectDB();
-
-const PORT = 8000;
 
 app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);
