@@ -24,3 +24,8 @@ export async function deleteProduct(req, res) {
   await ProductModel.deleteOne(req.params);
   res.status(204).json({ status: "Succes", message: "Product Deleted" });
 }
+
+export async function getProduct(req, res) {
+  const data = await ProductModel.find({ _id: req.params._id });
+  res.status(200).json({ status: "Success", data });
+}

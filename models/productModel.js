@@ -1,6 +1,11 @@
 import { model, Schema } from "mongoose";
 
 const productSchema = new Schema({
+  pid: {
+    type: String,
+    required: [true, "Mandatory Field"],
+    unique: [true, "Duplicate PID not allowed"],
+  },
   productName: {
     type: String,
     required: [true, "Mandatory Field"],
